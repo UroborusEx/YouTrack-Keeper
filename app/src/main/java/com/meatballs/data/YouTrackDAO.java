@@ -100,7 +100,8 @@ public class YouTrackDAO {
 
                 @Override
                 public void characters(char[] ch, int start, int length) throws SAXException {
-                    value.append(ch, start, length);
+                    if (value != null)
+                        value.append(ch, start, length);
                 }
             });
             return issue;

@@ -65,7 +65,6 @@ class IssueListAdapter extends SimpleAdapter {
 
     public boolean isResolved(int position) {
         String state = getField(position, "state");
-        // TODO: remove this hardcode when http://youtrack.jetbrains.net/issue/JT-5206 resolved
         return state != null &&
                 (  "Can't Reproduce".equalsIgnoreCase(state)
                 || "Duplicate".equalsIgnoreCase(state)

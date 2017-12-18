@@ -1,5 +1,6 @@
 package com.meatballs.client;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -29,8 +30,7 @@ public class YouTrackActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);        
-        // Load default values to preferences on app start
+        super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.youtrack_prefrences, false);
         login();
         
@@ -87,7 +87,6 @@ public class YouTrackActivity extends ListActivity {
                 return true;
             case R.id.options_item:
                 Intent preferencesIntent = new Intent().setClass(this, YouTrackPreference.class);
-                //Call subactivity with preferences
                 startActivityForResult(preferencesIntent, SUCCESS_CODE);
                 return true;
         }
@@ -113,7 +112,6 @@ public class YouTrackActivity extends ListActivity {
 
     @Override
     protected void onDestroy() {
-//        dao.destroy();
         super.onDestroy();
     }
 
@@ -125,7 +123,12 @@ public class YouTrackActivity extends ListActivity {
             String host = preferences.getString(getString(R.string.host_url_preference_title), null);
             dao.login(host, login, pass);
         } catch (RequestFailedException e) {
-            //TODO: Graceful handle
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setTitle("Login failed");
+            builder1.setMessage("Check your credentials and YouTrack URL");
+            builder1.setCancelable(true);
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
         }
     }
 
