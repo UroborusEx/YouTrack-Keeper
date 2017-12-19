@@ -6,19 +6,19 @@
                 a:key="@string/host_url_preference_title"
                 a:title="@string/host_url_preference_title"
                 a:summary="@string/host_url_preference_summary"
-                a:defaultValue=" "/>
+            />
     </PreferenceCategory>
 
     <PreferenceCategory a:title="@string/user_preference_category">
         <EditTextPreference
             a:key="@string/user_name_preference"
             a:title="@string/user_name_preference"
-            a:defaultValue=" "/>
+            />
         <EditTextPreference
             a:key="@string/user_password_preference"
             a:title="@string/user_password_preference"
             a:password="true"
-            a:defaultValue=" "/>
+            />
         <EditTextPreference
             a:key="@string/user_filter_preference"
             a:title="@string/user_filter_preference"

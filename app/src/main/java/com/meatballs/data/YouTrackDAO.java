@@ -37,7 +37,7 @@ public class YouTrackDAO {
 
     public void login(String baseUri, String login, String password) throws RequestFailedException {
         this.baseUri = baseUri;
-        if (Objects.equals(login, " ")) return;
+        if (baseUri == null || login == null || password == null) return;
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
