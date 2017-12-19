@@ -37,6 +37,7 @@ public class YouTrackDAO {
 
     public void login(String baseUri, String login, String password) throws RequestFailedException {
         this.baseUri = baseUri;
+        if (Objects.equals(login, " ")) return;
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
@@ -47,7 +48,7 @@ public class YouTrackDAO {
             HttpResponse response = httpClient.execute(post);
             assertStatus(response);
             post.abort();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RequestFailedException(e);
         }
     }
