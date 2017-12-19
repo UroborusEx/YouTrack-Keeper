@@ -135,7 +135,7 @@ public class YouTrackActivity extends ListActivity {
     private void updateQuery(boolean refreshView, boolean reload) {
         data.clear();
         try {
-            data.addAll(dao.getIssues("JT", query, 0, 20, reload));
+            data.addAll(dao.getIssues(query, 0, 20, reload));
         } catch (RequestFailedException ignore) {
             //ignore
         }

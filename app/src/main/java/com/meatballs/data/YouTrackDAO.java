@@ -110,17 +110,16 @@ public class YouTrackDAO {
         }
     }
 
-    public List<Map<String, Object>> getIssues(String project, String query, int position, int max, boolean reload) throws RequestFailedException {
-        String key = (project != null ? project : "") + query + "[" + position + ":" + max + "]";
-        List<Map<String, Object>> issues = !reload ? cache.get(key) : null;
+    public List<Map<String, Object>> getIssues(String query, int position, int max, boolean reload) throws RequestFailedException {
+        List<Map<String, Object>> issues = !reload ? cache.get(query) : null;
         if (issues == null) {
-            issues = loadIssues(project, query, position, max);
-            cache.put(key, issues);
+            issues = loadIssues(query, position, max);
+            cache.put(query, issues);
         }
         return issues;
     }
 
-    private List<Map<String, Object>> loadIssues(String project, String query, int position, int max) throws RequestFailedException {
+    private List<Map<String, Object>> loadIssues(String query, int position, int max) throws RequestFailedException {
         final ArrayList<Map<String, Object>> issues = new ArrayList<Map<String, Object>>();
         try {
             String uri = String.format(ISSUES_PATH, baseUri, quote(query), position, max);
